@@ -38,8 +38,8 @@ function Slider(elementId){
 	}
 
 	this.addEvents = function(){
-		element.addEventListener('pointerenter',that.stop);
-		element.addEventListener('pointerleave',that.slide);
+		// element.addEventListener('pointerenter',that.stop);
+		// element.addEventListener('pointerleave',that.slide);
 		arwLeft.addEventListener('click', that.previous);
 		arwRight.addEventListener('click', that.next);
 
@@ -91,24 +91,10 @@ function Slider(elementId){
 				// 	btns[j].style.background = 'white';
 				// }
 				if(that.marginLeft == 0 || that.marginLeft == 640 || that.marginLeft % 640 == 0){
+					if(that.marginLeft < (-3190) && that.marginLeft > (-3200))
+						that.marginLeft = 0;
 					that.toStopSlide();	
 				}
-
-				// if(that.marginLeft == 0 || marginLeft == -640)
-				// {
-				// 	// debugger;
-				// 	// console.log('hello world');s
-				// 	// that.slideStop();
-				// }
-				// else 
-				// {
-				// 	for(var k =2; k < 5; k++){
-				// 		if((that.marginLeft % 640) == -k)
-				// 		{
-				// 			// that.slideStop();
-				// 		}
-				// 	}
-				// }
 
 				for(var i =0; i <= 5; i++){
 					if(that.marginLeft <= -(i * 640) && that.marginLeft > -(i +1) * 640){
@@ -142,6 +128,7 @@ function Slider(elementId){
 	this.toStopSlide = function(){
 		clearInterval(that.intervalId);
 		var to = setTimeout(function() {
+			console.log('stop');
 			that.slide();
 		}, 3000);
 	}
